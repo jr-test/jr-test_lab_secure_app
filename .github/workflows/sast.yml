@@ -27,8 +27,8 @@ jobs:
             -e "MIXEWAY_URL=https://hub.mixeway.io" \
             -e "MIXEWAY_KEY=${{ secrets.MIXEWAT_KEY }}" \
             -e "MIXEWAY_PROJECT_ID=${{ secrets.MIXEWAY_PROJECT_ID }}" \
-            -e "MODE=STANDALONE \
+            -e "MODE=STANDALONE" \
             -e "MIXEWAY_PROJECT_NAME=${{ github.event.repository.name }}" \
             -e "COMMIT_ID=${{ steps.vars.outputs.sha_short }}"  \
             -e "BRANCH=${{ steps.vars.outputs.branch }}" \
-            mixeway/scanner:latest 
+            "mixeway/scanner:latest"
