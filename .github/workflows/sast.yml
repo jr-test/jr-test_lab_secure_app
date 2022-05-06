@@ -1,5 +1,9 @@
 name: Perform Mixeway Scan
 
+on:
+  push:
+    branches: [master]
+
 jobs:
   mixeway-scan:
     name: Mixeway Scanning
@@ -17,5 +21,15 @@ jobs:
           docker pull mixeway/scanner:latest
       - name: Run Scan
         run: |
-          docker run -e OSS_USERNAME=${{ secrets.OSS_USERNAME }} -e OSS_KEY=${{ secrets.OSS_KEY }} -e MIXEWAY_URL=https://hub.mixeway.io -e MIXEWAY_KEY=${{ secrets.MIXEWAT_KEY }} -e MIXEWAY_PROJECT_ID=${{ MIXEWAY_PROJECT_ID }} -e MODE=STANDALONE -e MIXEWAY_PROJECT_NAME=${{ github.event.repository.name }} -e COMMIT_ID=${{ steps.vars.outputs.sha_short }}  -e BRANCH=${{ steps.vars.outputs.branch }} -v /opt/lab_sec_audit/sast:/opt/sources mixeway/scanner:latest 
+          docker run \
+            -e OSS_USERNAME=${{ secrets.OSS_USERNAME }} \ 
+            -e OSS_KEY=${{ secrets.OSS_KEY }} \
+            -e MIXEWAY_URL=https://hub.mixeway.io \
+            -e MIXEWAY_KEY=${{ secrets.MIXEWAT_KEY }} \
+            -e MIXEWAY_PROJECT_ID=${{ MIXEWAY_PROJECT_ID }} \
+            -e MODE=STANDALONE \
+            -e MIXEWAY_PROJECT_NAME=${{ github.event.repository.name }} \
+            -e COMMIT_ID=${{ steps.vars.outputs.sha_short }}  \
+            -e BRANCH=${{ steps.vars.outputs.branch }} \
+            -v /opt/lab_sec_audit/sast:/opt/sources mixeway/scanner:latest 
 
