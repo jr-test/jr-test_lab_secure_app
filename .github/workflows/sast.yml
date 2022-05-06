@@ -31,5 +31,5 @@ jobs:
             -e MIXEWAY_PROJECT_NAME=${{ github.event.repository.name }} \
             -e COMMIT_ID=${{ steps.vars.outputs.sha_short }}  \
             -e BRANCH=${{ steps.vars.outputs.branch }} \
-            -v /opt/lab_sec_audit/sast:/opt/sources mixeway/scanner:latest 
+            -v .:sources mixeway/scanner:latest 
 
