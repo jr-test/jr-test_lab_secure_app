@@ -26,7 +26,7 @@ jobs:
             -e OSS_KEY=${{ secrets.OSS_KEY }} \
             -e MIXEWAY_URL=https://hub.mixeway.io \
             -e MIXEWAY_KEY=${{ secrets.MIXEWAT_KEY }} \
-            -e MIXEWAY_PROJECT_ID=${{ MIXEWAY_PROJECT_ID }} \
+            -e MIXEWAY_PROJECT_ID=${{ secrets.MIXEWAY_PROJECT_ID }} \
             -e MODE=STANDALONE \
             -e MIXEWAY_PROJECT_NAME=${{ github.event.repository.name }} \
             -e COMMIT_ID=${{ steps.vars.outputs.sha_short }}  \
